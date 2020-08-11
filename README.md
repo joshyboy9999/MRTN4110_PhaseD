@@ -18,4 +18,12 @@ All you need to do to get started with poetry is:
 
 ## File Structure
 
-There are two main directories we'll be working with 
+There are two main directories we'll be working with in this project
+
+### Legacy
+
+Will hold all of the working code from the previous phases, completely unmodified. This is for the purpose of reference.
+
+### src
+
+Will contain the source code for the PhaseD functionality and contain altered versions of these files for phaseD and integration.

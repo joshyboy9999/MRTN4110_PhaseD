@@ -6,6 +6,10 @@ authors = ["joshyboy9999 <z5161697@ad.unsw.edu.au>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+matplotlib = "3.2.2"
+opencv-python = "^4.3.0"
+opencv-contrib-python = "^4.3.0"
+ipykernel = "^5.3.4"
 
 [tool.poetry.dev-dependencies]
 

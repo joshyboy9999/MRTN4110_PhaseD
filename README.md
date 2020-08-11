@@ -4,6 +4,8 @@
 
 In order to get started working on the PhaseD Project. Ensure you first clone the Git to your workstation.
 
+
+
 ### Poetry
 
 Poetry is a python package manager that we will be using to ensure we all have the same dependencies installed for our python environments, that all package versions match up, and that everything runs smoothly.

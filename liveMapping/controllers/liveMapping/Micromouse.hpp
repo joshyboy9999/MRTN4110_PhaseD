@@ -16,13 +16,13 @@ class Micromouse : public Robot {
   Motor* rightMotor;
   PositionSensor *leftEncoder;
   PositionSensor *rightEncoder;
+public:
   DistanceSensor* leftProx;
   DistanceSensor* frontProx;
   DistanceSensor* rightProx;
   int row;
   int col;
   int heading;
-public:
   Keyboard* keyboard;
   int timeStep;
   Micromouse();
@@ -33,12 +33,12 @@ public:
   void goStraight();
   void printState(int step);
   int mystep();
+  bool getWallFromProx(DistanceSensor* prox);
+  char getHeadingChar(int heading);
 private:
   void finishTask();
   void turnTo(int ogtargetHeading);
   double getBearing();
-  char getHeadingChar(int heading);
-  char checkWallProx(DistanceSensor* prox);
 };
 
 #endif // MICROMOUSE_HPP

@@ -136,16 +136,16 @@ void Micromouse::goStraight() {
   finishTask();
 }
 
-void Micromouse::printState(int step) {
-  std::cout << "Step: " << std::setfill('0') << std::setw(2) << step
-            << ", Row: " << row
-            << ", Column: " << col
-            << ", Heading: " << getHeadingChar(heading)
-            << ", Left Wall: " << checkWallProx(leftProx)
-            << ", Front Wall: " << checkWallProx(frontProx)
-            << ", Right Wall: " << checkWallProx(rightProx)
-            << "\n";
-}
+// void Micromouse::printState(int step) {
+//   std::cout << "Step: " << std::setfill('0') << std::setw(2) << step
+//             << ", Row: " << row
+//             << ", Column: " << col
+//             << ", Heading: " << getHeadingChar(heading)
+//             << ", Left Wall: " << checkWallProx(leftProx)
+//             << ", Front Wall: " << checkWallProx(frontProx)
+//             << ", Right Wall: " << checkWallProx(rightProx)
+//             << "\n";
+// }
 
 int Micromouse::mystep() {
   return step(timeStep);
@@ -155,21 +155,21 @@ char Micromouse::getHeadingChar(int heading) {
   char ch = '-';
   switch (heading) {
   case 0:
-    ch = 'E';
+    ch = '>';
     break;
   case 1:
-    ch = 'N';
+    ch = '^';
     break;
   case 2:
-    ch = 'W';
+    ch = '<';
     break;
   case 3:
-    ch = 'S';
+    ch = 'v';
     break;
   }
   return ch;
 }
 
-char Micromouse::checkWallProx(DistanceSensor *prox) {
-  return (prox->getValue() < 900) ? 'Y' : 'N';
+bool Micromouse::getWallFromProx(DistanceSensor *prox) {
+  return (prox->getValue() < 900);
 }

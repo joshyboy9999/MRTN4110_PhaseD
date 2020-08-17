@@ -1,24 +1,24 @@
-#include "Micromouse.hpp"
+#include "Maze.hpp"
 
-void Maze::initialiseWallAsUnknown() {
-    for (int r = 0; r++ r < ROW_COUNT-1) {
-        for (int c = 0; c++ c < COL_COUNT) {
+void Maze::initialiseWallsAsUnknown() {
+    for (int r = 0; r < ROW_COUNT-1; r++) {
+        for (int c = 0; c < COL_COUNT; c++) {
             horiWalls[r][c] = WALL_UNKNOWN;
         }
     }
-    for (int r = 0; r++ r < ROW_COUNT) {
-        for (int c = 0; c++ c < COL_COUNT-1) {
+    for (int r = 0; r < ROW_COUNT; r++) {
+        for (int c = 0; c < COL_COUNT-1; c++) {
             vertWalls[r][c] = WALL_UNKNOWN;
         }
     }
 }
 
-void Maze::declareHoriWallAs(int wallRow, int col, int wallType) {
-    // std::cout << "declareHoriWallAs(" << wallRow << ", "  << col << ")\n";
+void Maze::setHoriWall(int wallRow, int col, int wallType) {
+    // std::cout << "setHoriWall(" << wallRow << ", "  << col << ")\n";
     horiWalls[wallRow][col] = wallType;
 }
-void Maze::declareVertWallAs(int row, int wallCol, int wallType) {
-    // std::cout << "declareVertWallAs(" << row << ", "  << wallCol << ")\n";
+void Maze::setVertWall(int row, int wallCol, int wallType) {
+    // std::cout << "setVertWall(" << row << ", "  << wallCol << ")\n";
     vertWalls[row][wallCol] = wallType;
 }
 

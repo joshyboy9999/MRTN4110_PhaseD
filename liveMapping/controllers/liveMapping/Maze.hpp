@@ -1,6 +1,8 @@
 #ifndef MAZE_HPP
 #define MAZE_HPP
 
+#include <webots/Robot.hpp>
+
 #define ROW_COUNT 5
 #define COL_COUNT 9
 #define WALL_UNKNOWN -1
@@ -36,9 +38,9 @@ struct maze {
   int robotDir;
   char robotCardinal;
   char robotArrow;
-  void initialiseWallAsUnknown();
-  void declareHoriWallAs(int wallRow, int col, int wallType);
-  void declareVertWallAs(int row, int wallCol, int wallType));
+  void initialiseWallsAsUnknown();
+  void setHoriWall(int wallRow, int col, int wallType);
+  void setVertWall(int row, int wallCol, int wallType);
   void setRobotPose(int row, int col, char ch);
   std::vector<std::string> getWallText();
   std::vector<std::string> addRobotArrowToText(std::vector<std::string> text);

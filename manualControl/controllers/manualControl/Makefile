@@ -39,7 +39,7 @@
 ###
 ### ---- C++ Sources ----
 ### if your program uses several C++ source files:
-CXX_SOURCES = controllerInput.cpp Micromouse.cpp
+CXX_SOURCES = manualControl.cpp Micromouse.cpp
 ###
 ### ---- Compilation options ----
 ### if special compilation flags are necessary:

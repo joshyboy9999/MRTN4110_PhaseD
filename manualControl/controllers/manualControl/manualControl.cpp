@@ -37,7 +37,6 @@ int main(int argc, char **argv) {
   while (micromouse->step(micromouse->timeStep) != -1) {
     auto key = micromouse->keyboard->getKey();
     if (key > 0) {
-      std::cout << key << "\n";
       switch (key) {
         case Keyboard::UP:
           std::cout << "Go forwards\n";

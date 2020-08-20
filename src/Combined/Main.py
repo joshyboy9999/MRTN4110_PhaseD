@@ -195,7 +195,7 @@ plt.show()
 if(markerCorners[0][0][0][1] > markerCorners[0][0][1][1]):
     if(markerCorners[0][0][0][1] > markerCorners[0][0][2][1]):
         if(markerCorners[0][0][0][1] > markerCorners[0][0][3][1]):
-            botOri = "V";
+            botOri = "v";
             dst = cv2.line(dst,(center_h-6,center_v-4),(center_h,center_v+4),(255,0,255),2)
             dst = cv2.line(dst,(center_h+6,center_v-4),(center_h,center_v+4),(255,0,255),2)
 elif(markerCorners[0][0][0][1] < markerCorners[0][0][2][1]):

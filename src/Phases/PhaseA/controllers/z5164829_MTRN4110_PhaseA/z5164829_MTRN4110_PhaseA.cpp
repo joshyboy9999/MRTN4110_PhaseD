@@ -432,7 +432,8 @@ int PhaseA(int argc, char **argv) {
 }
 
 int main(int argc, char **argv) {
-  PhaseB(argc, argv)
-  PhaseA(argc, argv)
+  PhaseB(argc, argv);
+  PhaseA(argc, argv);
+  return 0;
 }
 

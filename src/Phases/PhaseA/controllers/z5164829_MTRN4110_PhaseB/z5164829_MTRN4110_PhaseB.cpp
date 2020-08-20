@@ -289,7 +289,7 @@ struct maze {
 
 } typedef Maze;
 
-int PhaseB(int argc, char **argv) {
+int main(int argc, char **argv) {
   // Read maze file
   Maze* maze = new Maze();
   // std::cout << "Start - Reading map:\n";

@@ -7,6 +7,7 @@
 #include <filesystem>
 #include <iostream>
 #include <vector>
+#include <string>
 
 #define MAP_FILE_NAME "../../Map.txt"
 #define rowCount 5

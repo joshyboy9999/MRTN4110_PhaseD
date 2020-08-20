@@ -6,7 +6,7 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-RELATIVE_PATH = '..\\src\\'
+RELATIVE_PATH = '.\\'
 
 class ValueOutsideRangeError(Exception):
     """Raised when the input value is Out of Bounds"""

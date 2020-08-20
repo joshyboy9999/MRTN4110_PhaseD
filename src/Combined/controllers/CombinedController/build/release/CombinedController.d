@@ -1,4 +1,4 @@
-build/release/z5164829_MTRN4110_PhaseA.o: z5164829_MTRN4110_PhaseA.cpp \
+build/release/CombinedController.o: CombinedController.cpp \
   /Applications/Webots.app/include/controller/cpp/webots/Robot.hpp \
   /Applications/Webots.app/include/controller/cpp/webots/Motor.hpp \
   /Applications/Webots.app/include/controller/cpp/webots/Device.hpp \

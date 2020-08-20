@@ -39,7 +39,7 @@
 ###
 ### ---- C++ Sources ----
 ### if your program uses several C++ source files:
-CXX_SOURCES = z5164829_MTRN4110_PhaseA.cpp Micromouse.cpp
+CXX_SOURCES = CombinedController.cpp Micromouse.cpp
 ###
 ### ---- Compilation options ----
 ### if special compilation flags are necessary:

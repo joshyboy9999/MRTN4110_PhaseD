@@ -28,3 +28,40 @@ Will hold all of the working code from the previous phases, completely unmodifie
 ### src
 
 Will contain the source code for the PhaseD functionality and contain altered versions of these files for phaseD and integration.
+
+## General Useage
+
+There are two components to the regular program functionality. 
+
+1. Map Analysis
+   
+   - Map analysis takes place on a python script, which processes a pre-prepared image of a map, including the robot, and translates this into a .txt file containing an outline of the map for Path Planning.
+  
+2. Path Planning and Execution
+   
+   - Path Planning and Execution is performed using a C++ script run within WeBots. It takes the .txt file created in Map Analysis and implements a Path-Finding algorythm to find the shortest paths for the robot to reach the center.
+
+
+### Map Analysis Usage
+
+Ensuring you are in the `/src/Combined/` directory, type the command `$python Main.py` to run the Map Analyser. This will prompt you to select either map 1 or map 2 to perform analysis and generate a .txt map, remember your choise as it is required for the next part. Once you've selected the map, the program will display the processes performed on the Map image until the final map .txt is output to the command line and to a file called `./MapFound.txt`, this concludes map Analysis.
+
+### Path Planning and Execution Usage
+
+In order to plan and execute path planning on your chosen map, navigate to the `./src/Combined/worlds/` directory and select the world with the number coresponding to the one you chose for the previous part, either _world_1.wbt_ or _world_2.wbt_.
+
+## Special Features
+
+A Number of special features were created for the system to add to its existing functionality.
+
+### Manual Control
+
+Manual control grants the user the ability to control the movements of the robot according to directions given by the keyPad. In order to give these directions, open the ControlerInput world, click plat on Webots, and click on the simulation screen, this will allow you to take control of the robot.
+
+### Live Mapping
+
+Expanding on the previous feature live mapping allows the user to control the robot within the map and create the text file corresponding to that map as they go. The map will be revealed in the WeBots console as you explore the map using the manual control.
+
+### Live Tracking
+
+Live tracking is a demonstration of how tracking can be performed on the e-puck robot from above, by taking a video and running the tracking script on that video, the robot can be tracked accross the screen.

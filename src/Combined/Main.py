@@ -1,18 +1,40 @@
-#!/usr/bin/env python
+# %%
 # coding: utf-8
 
 # In[1]:
 
-
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+RELATIVE_PATH = '.\\'
 
+class ValueOutsideRangeError(Exception):
+    """Raised when the input value is Out of Bounds"""
+    pass
+
+#%%
+while True:
+    try:
+        mapNum = input("Select your map, by entering a number between 1 and 5: ")
+        mapNum = int(mapNum)
+        if(mapNum < 1 or mapNum > 5):
+            raise ValueOutsideRangeError
+        print("Map #", mapNum, " Selected.", )
+        break
+    except ValueError:
+        print("Invalid Map Number, try again.")
+    except ValueOutsideRangeError:
+        print("Invalid Map Number, try again.")
+
+#%% Set the correct map, maze, and robot file names. 
+
+MAZE_FILE_NAME = RELATIVE_PATH + f'Maze_{mapNum}.png'
+ROBOT_FILE_NAME = RELATIVE_PATH + f'Robot_{mapNum}.png'
+MAP_FILE_NAME = RELATIVE_PATH + f'MapFound.txt'
 
 # In[2]:
 
-
-img = cv2.imread('../MAZE_TEST_10.png')
+img = cv2.imread(MAZE_FILE_NAME)
 img_rgb = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
 plt.figure(figsize = (18,10))
 plt.imshow(img_rgb)
@@ -23,7 +45,7 @@ plt.show()
 
 
 img_hsv = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
-img_gray = cv2.imread('../MAZE_TEST_10.png',cv2.IMREAD_GRAYSCALE)
+img_gray = cv2.imread(MAZE_FILE_NAME,cv2.IMREAD_GRAYSCALE)
 mask1 = (img_hsv[:,:,0] >= 140) & (img_hsv[:,:,0] <= 150) & (img_hsv[:,:,1] > 50) & (img_hsv[:,:,2] > 100)
 mask1 = np.array(mask1,dtype=np.uint8)
 kernel = np.ones((3,3), np.uint8)
@@ -147,10 +169,10 @@ if(botLoc == -1):
                 center_v += i
                 counter += 1
                 botLoc = 3
-print(botLoc)
+# print(botLoc)
 center_h = int(center_h / counter)
 center_v = int(center_v / counter)
-print(center_h,center_v)
+# print(center_h,center_v)
 dst = cv2.circle(dst,(center_h,center_v),20,(255,0,255),2)
 plt.figure(figsize = (18,10))
 plt.imshow(dst)
@@ -160,7 +182,7 @@ plt.show()
 # In[10]:
 
 
-img2 = cv2.imread('../ROBOT_TEST_10.png')
+img2 = cv2.imread(ROBOT_FILE_NAME)
 img_rgb2 = cv2.cvtColor(img2,cv2.COLOR_BGR2RGB)
 dictionary = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
 parameters =  cv2.aruco.DetectorParameters_create()
@@ -169,11 +191,11 @@ img_rgb2 = cv2.aruco.drawDetectedMarkers(img_rgb2, markerCorners, markerIds)
 plt.figure(figsize = (10,10))
 plt.imshow(img_rgb2)
 plt.show()
-print(markerCorners[0][0])
+# print(markerCorners[0][0])
 if(markerCorners[0][0][0][1] > markerCorners[0][0][1][1]):
     if(markerCorners[0][0][0][1] > markerCorners[0][0][2][1]):
         if(markerCorners[0][0][0][1] > markerCorners[0][0][3][1]):
-            botOri = "V";
+            botOri = "v";
             dst = cv2.line(dst,(center_h-6,center_v-4),(center_h,center_v+4),(255,0,255),2)
             dst = cv2.line(dst,(center_h+6,center_v-4),(center_h,center_v+4),(255,0,255),2)
 elif(markerCorners[0][0][0][1] < markerCorners[0][0][2][1]):
@@ -205,7 +227,7 @@ plt.show()
 # In[12]:
 
 
-file1 = open("../MapFound.txt","w")
+file1 = open(MAP_FILE_NAME, "w")
 str1 = " --- --- --- --- --- --- --- --- --- \n"
 file1.write(str1)
 for j in range(4):
@@ -267,20 +289,11 @@ file1.close()
 
 
 # In[13]:
+print('Map Generated.')
 
-
-file2 = open("../MapFound.txt","r+")
-print(file2.readline())
-print(file2.readline())
-print(file2.readline())
-print(file2.readline())
-print(file2.readline())
-print(file2.readline())
-print(file2.readline())
-print(file2.readline())
-print(file2.readline())
-print(file2.readline())
-print(file2.readline())
-print(file2.readline())
+file2 = open(MAP_FILE_NAME,"r+")
+print(file2.read())
 file2.close()
 
+
+# %%

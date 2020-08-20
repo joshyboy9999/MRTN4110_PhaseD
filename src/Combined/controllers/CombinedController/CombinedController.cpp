@@ -1,15 +1,32 @@
-// File: z5164829_MTRN4110_PhaseB.cpp
-// Date: 23/6/2020
-// Description: Shortest path finder
-// Author: Tobin Smit
+// File:          z5164829_controller.cpp
+// Date:
+// Description:
+// Author:
+// Modifications:
+
+// You may need to add webots include files such as
+// <webots/DistanceSensor.hpp>, <webots/Motor.hpp>, etc.
+// and/or to add some other includes
+#include <webots/Robot.hpp>
+#include <webots/Motor.hpp>
+#include <webots/DistanceSensor.hpp>
+#include <webots/PositionSensor.hpp>
+#include <webots/Compass.hpp>
+#include <fstream>
+#include <filesystem>
+#include "Micromouse.hpp"
+
+// All the webots classes are defined in the "webots" namespace
+using namespace webots;
+
+#define PATH_PLAN_FILE_NAME "../../PathPlanFound.txt"
+#define MAP_FILE_NAME "../../MapFound.txt"
 
 #include <fstream>
 #include <filesystem>
 #include <iostream>
 #include <vector>
-#include <string>
 
-#define MAP_FILE_NAME "../../Map.txt"
 #define rowCount 5
 #define colCount 9
 
@@ -290,7 +307,7 @@ struct maze {
 
 } typedef Maze;
 
-int main(int argc, char **argv) {
+int PhaseB(int argc, char **argv) {
   // Read maze file
   Maze* maze = new Maze();
   // std::cout << "Start - Reading map:\n";
@@ -359,3 +376,64 @@ int main(int argc, char **argv) {
   delete maze;
   return 0;
 }
+
+std::string getPathPlanString(std::string path) { 
+  std::ifstream ifs (path);
+  std::string str;
+  std::getline(ifs, str);
+  return str;
+}
+
+int PhaseA(int argc, char **argv) {
+  Micromouse* micromouse = new Micromouse();
+
+  std::cout << "Start - Read path plan from " << PATH_PLAN_FILE_NAME << ":\n";
+  std::string pathPlanString = getPathPlanString(PATH_PLAN_FILE_NAME);
+  std::cout << pathPlanString << "\n";
+  std::cout << "Done - Path plan read!\n";
+
+  int step = 0;
+  int startRow = pathPlanString.at(0) - '0';
+  int startCol = pathPlanString.at(1) - '0';
+  char headingLetter = pathPlanString.at(2);
+  int startHeading = 0;
+  switch (headingLetter) {
+    case 'E':
+      startHeading = 0; break;
+    case 'N':
+      startHeading = 1; break;
+    case 'W':
+      startHeading = 2; break;
+    case 'S':
+      startHeading = 3; break;
+  }
+  micromouse->setRowColHeading(startRow,startCol,startHeading);
+
+  std::cout << "Start - Execute path plan!\n";
+  micromouse->step(micromouse->timeStep);
+  for (int i = 3; i < pathPlanString.length(); i++) {
+    micromouse->printState(step);
+    switch (pathPlanString.at(i)) {
+      case 'L':
+        micromouse->turnLeft(); break;
+      case 'F':
+        micromouse->goStraight(); break;
+      case 'R':
+        micromouse->turnRight(); break;
+    }
+    // finishTask(robot, timeStep, leftEncoder, rightEncoder, frontProx);
+    step++;
+  }
+  micromouse->printState(step);
+  std::cout << "Done - Path plan executed!\n";
+  delete micromouse;
+  return 0;
+  
+}
+
+int main(int argc, char **argv) {
+  PhaseB(argc, argv);
+  PhaseA(argc, argv);
+  return 0;
+}
+

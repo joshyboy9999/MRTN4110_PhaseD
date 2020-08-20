@@ -505,6 +505,7 @@ DEF z1234567 E-puck {
           }
         }
       ]
+      name "marker"
     }
     DEF White Solid {
       translation 0 0 -0.01

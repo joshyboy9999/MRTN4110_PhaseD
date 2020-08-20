@@ -470,6 +470,22 @@ DEF z1234567 E-puck {
   rotation 0 1 0 3.141592653589793
   controller ""
   turretSlot [
+    Compass {
+    }
+    DistanceSensor {
+      translation -0.03 0 -0.01
+      rotation 0 1 0 3.14
+      name "left prox"
+    }
+    DistanceSensor {
+      translation 0.03 0 -0.01
+      name "right prox"
+    }
+    DistanceSensor {
+      translation 0 0 -0.04
+      rotation 0 -1 0 -1.57
+      name "front prox"
+    }
     DEF Marker Solid {
       translation 0 0.0001 -0.01
       rotation 0 1 0 -0.7854003061004253
